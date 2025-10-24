@@ -13,6 +13,7 @@ interface UserProfile {
   gender: "male" | "female" | "other";
   activityLevel: "sedentary" | "light" | "moderate" | "active" | "very-active";
   goal: "lose" | "maintain" | "gain";
+  dietType: "vegetarian" | "non-vegetarian" | "vegan" | "eggetarian";
   dietaryPreferences: string;
   mealsPerDay: number;
 }
@@ -29,6 +30,7 @@ const UserProfileForm = ({ onSubmit }: UserProfileFormProps) => {
     gender: "male",
     activityLevel: "moderate",
     goal: "maintain",
+    dietType: "vegetarian",
     dietaryPreferences: "",
     mealsPerDay: 3,
   });
@@ -165,6 +167,21 @@ const UserProfileForm = ({ onSubmit }: UserProfileFormProps) => {
             </div>
 
             <div className="space-y-2">
+              <Label htmlFor="diet-type">Diet Type</Label>
+              <Select value={profile.dietType} onValueChange={(value: any) => setProfile({ ...profile, dietType: value })}>
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="vegetarian">Vegetarian (शाकाहारी)</SelectItem>
+                  <SelectItem value="non-vegetarian">Non-Vegetarian (मांसाहारी)</SelectItem>
+                  <SelectItem value="eggetarian">Eggetarian (अंडाहारी)</SelectItem>
+                  <SelectItem value="vegan">Vegan (पूर्ण शाकाहारी)</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="space-y-2">
               <Label htmlFor="meals">Meals Per Day</Label>
               <Select 
                 value={profile.mealsPerDay.toString()} 
@@ -184,10 +201,10 @@ const UserProfileForm = ({ onSubmit }: UserProfileFormProps) => {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="dietary">Dietary Preferences (Optional)</Label>
+            <Label htmlFor="dietary">Additional Preferences (Optional)</Label>
             <Textarea
               id="dietary"
-              placeholder="e.g., vegetarian, vegan, gluten-free, dairy-free, allergies, food dislikes..."
+              placeholder="e.g., no onion-garlic, jain food, allergies, regional preferences (North/South Indian), food dislikes..."
               value={profile.dietaryPreferences}
               onChange={(e) => setProfile({ ...profile, dietaryPreferences: e.target.value })}
               rows={3}

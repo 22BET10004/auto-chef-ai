@@ -1,7 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Utensils, Flame, Apple } from "lucide-react";
+import { Utensils, Flame, Apple, Dumbbell, Clock, Zap } from "lucide-react";
 
 interface Meal {
   name: string;
@@ -13,8 +13,17 @@ interface Meal {
   ingredients: string[];
 }
 
+interface Workout {
+  name: string;
+  duration: string;
+  calories: number;
+  description: string;
+  intensity: string;
+}
+
 interface MealPlanData {
   meals: Meal[];
+  workouts?: Workout[];
   totalCalories: number;
   nutritionTips: string;
 }
@@ -104,9 +113,48 @@ const MealPlan = ({ mealPlan, targetCalories, onReset }: MealPlanProps) => {
         ))}
       </div>
 
+      {mealPlan.workouts && mealPlan.workouts.length > 0 && (
+        <div className="space-y-4">
+          <h3 className="text-2xl font-bold text-foreground flex items-center gap-2">
+            <Dumbbell className="h-6 w-6 text-secondary" />
+            Recommended Workouts
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {mealPlan.workouts.map((workout, index) => (
+              <Card key={index} className="hover:shadow-elevated transition-all duration-300 border-secondary/20">
+                <CardHeader className="bg-gradient-to-br from-secondary/10 to-secondary/5">
+                  <div className="flex items-start justify-between">
+                    <CardTitle className="text-lg">{workout.name}</CardTitle>
+                    <Badge 
+                      variant={workout.intensity === "high" ? "destructive" : workout.intensity === "moderate" ? "default" : "secondary"}
+                      className="capitalize"
+                    >
+                      {workout.intensity}
+                    </Badge>
+                  </div>
+                </CardHeader>
+                <CardContent className="pt-4 space-y-3">
+                  <p className="text-sm text-muted-foreground">{workout.description}</p>
+                  <div className="flex items-center gap-4 text-sm">
+                    <div className="flex items-center gap-1">
+                      <Clock className="h-4 w-4 text-secondary" />
+                      <span>{workout.duration}</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <Zap className="h-4 w-4 text-accent" />
+                      <span>~{workout.calories} cal</span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      )}
+
       <div className="flex justify-center pt-4">
         <Button variant="outline" onClick={onReset} size="lg">
-          Create New Meal Plan
+          Create New Plan
         </Button>
       </div>
     </div>

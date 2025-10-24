@@ -11,41 +11,62 @@ serve(async (req) => {
   }
 
   try {
-    const { calories, dietaryPreferences, mealsPerDay } = await req.json();
+    const { calories, dietaryPreferences, mealsPerDay, dietType, activityLevel, goal } = await req.json();
     
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     if (!LOVABLE_API_KEY) {
       throw new Error("LOVABLE_API_KEY is not configured");
     }
 
-    const systemPrompt = `You are a professional nutritionist AI. Generate personalized meal recommendations based on the user's calorie target and dietary preferences. 
+    const dietTypeText = dietType === "vegetarian" ? "Pure vegetarian (no meat, fish, eggs)" :
+                         dietType === "non-vegetarian" ? "Non-vegetarian (includes meat, fish, eggs)" :
+                         dietType === "eggetarian" ? "Eggetarian (vegetarian + eggs allowed)" :
+                         "Vegan (no animal products)";
+
+    const systemPrompt = `You are a professional Indian nutritionist AI specializing in traditional and modern Indian cuisine. Generate personalized meal recommendations based on the user's calorie target and dietary preferences.
     
-    Provide ${mealsPerDay} meals that total approximately ${calories} calories per day.
+    IMPORTANT: Generate ONLY authentic Indian meals using Indian ingredients, spices, and cooking methods.
+    
+    Diet Type: ${dietTypeText}
+    Provide ${mealsPerDay} Indian meals that total approximately ${calories} calories per day.
+    Additional preferences: ${dietaryPreferences || "none specified"}
     
     For each meal, include:
-    - Meal name (creative and appetizing)
-    - Detailed description
+    - Meal name (in English, Indian dish name)
+    - Detailed description with Indian cooking methods
     - Estimated calories
     - Macronutrients (protein, carbs, fats in grams)
-    - Key ingredients list
+    - Traditional Indian ingredients with measurements
     
-    Consider these dietary preferences: ${dietaryPreferences || "none specified"}
+    Also provide workout recommendations based on:
+    - Activity level: ${activityLevel}
+    - Goal: ${goal === "lose" ? "weight loss" : goal === "gain" ? "muscle gain" : "maintenance"}
+    - Calories: ${calories}
     
     Return ONLY valid JSON in this exact format:
     {
       "meals": [
         {
-          "name": "Meal Name",
-          "description": "Detailed meal description",
+          "name": "Indian Meal Name",
+          "description": "Detailed description with Indian context",
           "calories": 450,
           "protein": 25,
           "carbs": 40,
           "fats": 15,
-          "ingredients": ["ingredient 1", "ingredient 2", "ingredient 3"]
+          "ingredients": ["ingredient with measurement", "ingredient 2", "spice 3"]
+        }
+      ],
+      "workouts": [
+        {
+          "name": "Exercise name",
+          "duration": "30 minutes",
+          "calories": 200,
+          "description": "Brief description of the exercise",
+          "intensity": "moderate"
         }
       ],
       "totalCalories": ${calories},
-      "nutritionTips": "Brief personalized nutrition tip"
+      "nutritionTips": "Brief personalized Indian nutrition tip"
     }`;
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {

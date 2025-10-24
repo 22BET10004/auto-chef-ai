@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/hero-nutrition.jpg";
+import heroImage from "@/assets/hero-indian-nutrition.jpg";
 
 interface HeroProps {
   onGetStarted: () => void;
@@ -19,10 +19,10 @@ const Hero = ({ onGetStarted }: HeroProps) => {
       
       <div className="container mx-auto px-4 z-10 text-center text-white">
         <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
-          Your AI Nutrition Coach
+          स्वस्थ भारत, मजबूत भारत
         </h1>
         <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto opacity-95">
-          Get personalized meal plans powered by AI. Track calories, discover delicious recipes, and achieve your health goals.
+          AI-powered Indian meal plans tailored for you. Get personalized nutrition, traditional recipes, and fitness guidance.
         </p>
         <Button 
           onClick={onGetStarted}

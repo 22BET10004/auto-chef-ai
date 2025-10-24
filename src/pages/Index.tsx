@@ -50,6 +50,9 @@ const Index = () => {
             calories,
             dietaryPreferences: profile.dietaryPreferences,
             mealsPerDay: profile.mealsPerDay,
+            dietType: profile.dietType,
+            activityLevel: profile.activityLevel,
+            goal: profile.goal,
           }),
         }
       );

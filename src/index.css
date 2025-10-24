@@ -17,16 +17,16 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 142 51% 12%;
 
-    --primary: 142 76% 36%;
+    --primary: 33 100% 50%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 142 30% 96%;
-    --secondary-foreground: 142 51% 12%;
+    --secondary: 291 64% 42%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 142 20% 95%;
-    --muted-foreground: 142 10% 45%;
+    --muted: 33 20% 95%;
+    --muted-foreground: 33 10% 45%;
 
-    --accent: 25 95% 53%;
+    --accent: 138 76% 36%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
@@ -38,11 +38,11 @@ All colors MUST be HSL.
 
     --radius: 0.75rem;
 
-    --gradient-hero: linear-gradient(135deg, hsl(142, 76%, 36%), hsl(160, 84%, 39%));
-    --gradient-card: linear-gradient(145deg, hsl(0, 0%, 100%), hsl(142, 30%, 98%));
+    --gradient-hero: linear-gradient(135deg, hsl(33, 100%, 50%), hsl(291, 64%, 42%));
+    --gradient-card: linear-gradient(145deg, hsl(0, 0%, 100%), hsl(33, 30%, 98%));
     
-    --shadow-soft: 0 4px 20px -4px hsl(142 76% 36% / 0.1);
-    --shadow-elevated: 0 10px 40px -8px hsl(142 76% 36% / 0.15);
+    --shadow-soft: 0 4px 20px -4px hsl(33 100% 50% / 0.15);
+    --shadow-elevated: 0 10px 40px -8px hsl(33 100% 50% / 0.2);
     
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -66,16 +66,16 @@ All colors MUST be HSL.
     --popover: 142 51% 8%;
     --popover-foreground: 142 20% 95%;
 
-    --primary: 142 76% 42%;
+    --primary: 33 100% 55%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 142 30% 15%;
-    --secondary-foreground: 142 20% 95%;
+    --secondary: 291 64% 48%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 142 20% 18%;
-    --muted-foreground: 142 10% 60%;
+    --muted: 33 20% 18%;
+    --muted-foreground: 33 10% 60%;
 
-    --accent: 25 95% 53%;
+    --accent: 138 76% 42%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62.8% 50%;
@@ -85,8 +85,8 @@ All colors MUST be HSL.
     --input: 142 20% 18%;
     --ring: 142 76% 42%;
     
-    --gradient-hero: linear-gradient(135deg, hsl(142, 76%, 28%), hsl(160, 84%, 31%));
-    --gradient-card: linear-gradient(145deg, hsl(142, 51%, 8%), hsl(142, 30%, 10%));
+    --gradient-hero: linear-gradient(135deg, hsl(33, 100%, 40%), hsl(291, 64%, 35%));
+    --gradient-card: linear-gradient(145deg, hsl(33, 51%, 8%), hsl(33, 30%, 10%));
     
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
