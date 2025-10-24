@@ -1,0 +1,4 @@
+project_id = "zqlobevrlxadzrfvkaoj"
+
+[functions.meal-recommendations]
+verify_jwt = false
