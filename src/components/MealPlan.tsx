@@ -5,7 +5,7 @@ import { Utensils, Flame, Apple, Dumbbell, Clock, Zap } from "lucide-react";
 
 interface Meal {
   name: string;
-  description: string;
+  benefits: string[];
   calories: number;
   protein: number;
   carbs: number;
@@ -52,15 +52,18 @@ const MealPlan = ({ mealPlan, targetCalories, onReset }: MealPlanProps) => {
       </div>
 
       {mealPlan.nutritionTips && (
-        <Card className="border-accent/20 bg-accent/5">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-accent">
+        <Card className="border-accent/20 bg-gradient-to-br from-accent/5 to-accent/10">
+          <CardHeader className="pb-3">
+            <CardTitle className="flex items-center gap-2 text-accent text-lg">
               <Apple className="h-5 w-5" />
-              Nutrition Tip
+              Pro Tips
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-muted-foreground">{mealPlan.nutritionTips}</p>
+            <div className="flex items-start gap-2">
+              <span className="text-accent font-bold text-lg">💡</span>
+              <p className="text-sm text-foreground leading-relaxed">{mealPlan.nutritionTips}</p>
+            </div>
           </CardContent>
         </Card>
       )}
@@ -69,13 +72,22 @@ const MealPlan = ({ mealPlan, targetCalories, onReset }: MealPlanProps) => {
         {mealPlan.meals.map((meal, index) => (
           <Card key={index} className="hover:shadow-elevated transition-all duration-300 hover:-translate-y-1">
             <CardHeader className="bg-gradient-to-br from-card to-secondary/10">
-              <div className="flex items-start justify-between">
+              <div className="flex items-start justify-between mb-2">
                 <CardTitle className="text-xl">{meal.name}</CardTitle>
-                <Badge variant="secondary" className="bg-primary/10 text-primary">
+                <Badge variant="secondary" className="bg-primary/10 text-primary font-semibold">
                   {meal.calories} cal
                 </Badge>
               </div>
-              <CardDescription className="mt-2">{meal.description}</CardDescription>
+              {meal.benefits && meal.benefits.length > 0 && (
+                <div className="space-y-1 mt-3">
+                  {meal.benefits.map((benefit, i) => (
+                    <div key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                      <span className="text-accent font-bold mt-0.5">✓</span>
+                      <span>{benefit}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
             </CardHeader>
             <CardContent className="pt-4">
               <div className="space-y-4">
@@ -96,15 +108,16 @@ const MealPlan = ({ mealPlan, targetCalories, onReset }: MealPlanProps) => {
 
                 {meal.ingredients && meal.ingredients.length > 0 && (
                   <div>
-                    <h4 className="font-semibold text-sm mb-2">Key Ingredients:</h4>
-                    <ul className="text-sm text-muted-foreground space-y-1">
-                      {meal.ingredients.slice(0, 5).map((ingredient, i) => (
-                        <li key={i} className="flex items-start gap-2">
-                          <span className="text-primary mt-1">•</span>
-                          <span>{ingredient}</span>
-                        </li>
+                    <h4 className="font-semibold text-sm mb-2 flex items-center gap-1">
+                      <span className="text-primary">🥘</span> Key Ingredients
+                    </h4>
+                    <div className="flex flex-wrap gap-1.5">
+                      {meal.ingredients.map((ingredient, i) => (
+                        <Badge key={i} variant="outline" className="text-xs font-normal">
+                          {ingredient}
+                        </Badge>
                       ))}
-                    </ul>
+                    </div>
                   </div>
                 )}
               </div>

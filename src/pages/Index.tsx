@@ -8,12 +8,19 @@ import { Loader2 } from "lucide-react";
 interface MealPlanData {
   meals: Array<{
     name: string;
-    description: string;
+    benefits: string[];
     calories: number;
     protein: number;
     carbs: number;
     fats: number;
     ingredients: string[];
+  }>;
+  workouts?: Array<{
+    name: string;
+    duration: string;
+    calories: number;
+    description: string;
+    intensity: string;
   }>;
   totalCalories: number;
   nutritionTips: string;
