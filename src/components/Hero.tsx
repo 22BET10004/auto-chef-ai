@@ -19,7 +19,7 @@ const Hero = ({ onGetStarted }: HeroProps) => {
       
       <div className="container mx-auto px-4 z-10 text-center text-white">
         <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
-          स्वस्थ भारत, मजबूत भारत
+          Your Favorite Diet Planner
         </h1>
         <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto opacity-95">
           AI-powered Indian meal plans tailored for you. Get personalized nutrition, traditional recipes, and fitness guidance.
