@@ -6,5 +6,6 @@
         "*"
       ]
     }
-  }
+  },
+  "exclude": ["frontend", "backend", "node_modules", ".next"]
 }
