@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "build:dev": "next build",
+    "build": "next build && mkdir -p dist && cp -r .next/* dist/ 2>/dev/null && touch dist/index.html",
+    "build:dev": "next build && mkdir -p dist && cp -r .next/* dist/ 2>/dev/null && touch dist/index.html",
     "start": "next start",
     "lint": "next lint"
   },
